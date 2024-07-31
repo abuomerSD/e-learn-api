@@ -27,9 +27,9 @@ public class User {
     private LocalDateTime createdAt;
     @OneToMany
     private Set<SystemOperations> systemOperations;
-    @ManyToOne()
-    @JoinColumn(name = "userId", nullable = true)
-    private Course course;
+    @ManyToMany()
+//    @JoinColumn(name = "courseId", nullable = true)
+    private Set<Course> courses;
     @OneToOne
     private Payment payment;
 }

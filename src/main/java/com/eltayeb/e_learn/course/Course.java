@@ -1,7 +1,10 @@
 package com.eltayeb.e_learn.course;
 
+import com.eltayeb.e_learn.article.Article;
 import com.eltayeb.e_learn.category.Category;
+import com.eltayeb.e_learn.system_operations.SystemOperations;
 import com.eltayeb.e_learn.user.User;
+import com.eltayeb.e_learn.video.Video;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +23,6 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String title;
-//    private UUID categoryId;
     private double price;
     private long videosLengthInSeconds;
     private String level;
@@ -30,6 +32,12 @@ public class Course {
     @ManyToOne
     @JoinColumn(name = "categoryId", nullable = true)
     private Category category;
+    @ManyToMany
+    private Set<User> users;
     @OneToMany
-    private Set<User> user;
+    private Set<Article> articles;
+    @OneToMany
+    private Set<Video> videos;
+    @OneToMany
+    private Set<SystemOperations> systemOperations;
 }
